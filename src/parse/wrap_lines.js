@@ -128,10 +128,9 @@ function findLineBreaks(lines, lineBreakArray) {
 					var start = 0;
 					for (var e = 0; e < voice.length; e++) {
 						var el = voice[e];
-
 						if (el.el_type === 'bar') {
 							if (lineBreaks[lbi] === measureNumber) {
-								lineBreakIndexes.push({ ogLine: i, line: outputLine, staff: j, voice: k, start: start, end: e})
+								lineBreakIndexes.push({ ogLine: i, line: outputLine, staff: j, voice: k, start: start, end: e});
 								start = e + 1;
 								outputLine++;
 								lineCounter = Math.max(lineCounter, outputLine)

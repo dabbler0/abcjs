@@ -13005,7 +13005,7 @@ var parseCommon = __webpack_require__(/*! ../parse/abc_common */ "./src/parse/ab
                   setDynamics(elem);
 
                   // regular items are just pushed.
-                  if (!elem.rest || elem.rest.type !== 'spacer') {
+                  if (true /*!elem.rest || elem.rest.type !== 'spacer'*/) {
                     var noteElem = {
                       elem: elem,
                       el_type: "note",
@@ -17283,10 +17283,14 @@ function addRestToAbsElement(abselem, elem, duration, dot, isMultiVoice, stemdir
   var noteHead;
   var roomTaken;
   var roomTakenRight;
+
+  /*
   if (isMultiVoice) {
-    if (stemdir === "down") restpitch = 3;
-    if (stemdir === "up") restpitch = 11;
+  if (stemdir === "down") restpitch = 3;
+  if (stemdir === "up") restpitch = 11;
   }
+  */
+
   // There is special placement for the percussion staff. If there is one staff line, then move the rest position.
   if (isSingleLineStaff) {
     // The half and whole rests are attached to different lines normally, so we need to tweak their position to get them to both be attached to the same one.
@@ -22892,7 +22896,7 @@ function drawVoice(renderer, params, bartop, selectables, staffPos) {
           child.elemset = drawDynamics(renderer, child, selectables);
           break;
         case "TripletElem":
-          drawTriplet(renderer, child, selectables);
+          if (params.voicenumber === 0) drawTriplet(renderer, child, selectables);
           break;
         case "EndingElem":
           child.elemset = drawEnding(renderer, child, params.startx + 10, width, selectables);
@@ -24388,16 +24392,16 @@ var setUpperAndLowerElements = function setUpperAndLowerElements(renderer, staff
     }
     incTop(staff, positionY, 'partHeightAbove');
     incTop(staff, positionY, 'tempoHeightAbove');
-    if (staff.specialY.lyricHeightBelow) {
-      staff.specialY.lyricHeightBelow += renderer.spacing.vocal / spacing.STEP;
-      positionY.lyricHeightBelow = staff.bottom;
-      staff.bottom -= staff.specialY.lyricHeightBelow + margin;
-    }
     if (staff.specialY.chordHeightBelow) {
       positionY.chordHeightBelow = staff.bottom;
       var hgt = staff.specialY.chordHeightBelow;
       if (staff.specialY.chordLines.below) hgt *= staff.specialY.chordLines.below;
       staff.bottom -= hgt + margin;
+    }
+    if (staff.specialY.lyricHeightBelow) {
+      staff.specialY.lyricHeightBelow += renderer.spacing.vocal / spacing.STEP;
+      positionY.lyricHeightBelow = staff.bottom;
+      staff.bottom -= staff.specialY.lyricHeightBelow + margin;
     }
     if (staff.specialY.volumeHeightBelow && staff.specialY.dynamicHeightBelow) {
       positionY.volumeHeightBelow = staff.bottom;

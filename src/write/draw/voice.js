@@ -76,7 +76,8 @@ function drawVoice(renderer, params, bartop, selectables, staffPos) {
 					child.elemset = drawDynamics(renderer, child, selectables);
 					break;
 				case "TripletElem":
-					drawTriplet(renderer, child, selectables);
+                                        if (params.voicenumber === 0)
+					  drawTriplet(renderer, child, selectables);
 					break;
 				case "EndingElem":
 					child.elemset = drawEnding(renderer, child, params.startx + 10, width, selectables);

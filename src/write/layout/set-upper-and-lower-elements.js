@@ -48,17 +48,17 @@ var setUpperAndLowerElements = function (renderer, staffGroup) {
 		incTop(staff, positionY, 'partHeightAbove');
 		incTop(staff, positionY, 'tempoHeightAbove');
 
-		if (staff.specialY.lyricHeightBelow) {
-			staff.specialY.lyricHeightBelow += renderer.spacing.vocal / spacing.STEP;
-			positionY.lyricHeightBelow = staff.bottom;
-			staff.bottom -= (staff.specialY.lyricHeightBelow + margin);
-		}
 		if (staff.specialY.chordHeightBelow) {
 			positionY.chordHeightBelow = staff.bottom;
 			var hgt = staff.specialY.chordHeightBelow;
 			if (staff.specialY.chordLines.below)
 				hgt *= staff.specialY.chordLines.below;
 			staff.bottom -= (hgt + margin);
+		}
+		if (staff.specialY.lyricHeightBelow) {
+			staff.specialY.lyricHeightBelow += renderer.spacing.vocal / spacing.STEP;
+			positionY.lyricHeightBelow = staff.bottom;
+			staff.bottom -= (staff.specialY.lyricHeightBelow + margin);
 		}
 		if (staff.specialY.volumeHeightBelow && staff.specialY.dynamicHeightBelow) {
 			positionY.volumeHeightBelow = staff.bottom;

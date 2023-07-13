@@ -541,10 +541,13 @@ function addRestToAbsElement(abselem, elem, duration, dot, isMultiVoice, stemdir
 	var roomTaken;
 	var roomTakenRight;
 
+        /*
 	if (isMultiVoice) {
 		if (stemdir === "down") restpitch = 3;
 		if (stemdir === "up") restpitch = 11;
 	}
+        */
+
 	// There is special placement for the percussion staff. If there is one staff line, then move the rest position.
 	if (isSingleLineStaff) {
 		// The half and whole rests are attached to different lines normally, so we need to tweak their position to get them to both be attached to the same one.

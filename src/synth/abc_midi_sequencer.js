@@ -228,7 +228,7 @@ var parseCommon = require("../parse/abc_common");
 									setDynamics(elem);
 
 									// regular items are just pushed.
-									if (!elem.rest || elem.rest.type !== 'spacer') {
+									if (true /*!elem.rest || elem.rest.type !== 'spacer'*/) {
 										var noteElem = { elem: elem, el_type: "note", timing: durationCounter[voiceNumber] }; // Make a copy so that modifications aren't kept except for adding the midiPitches
 										if (elem.style)
 											noteElem.style = elem.style;
